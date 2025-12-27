@@ -230,8 +230,8 @@ npm run dev
 
 | Field | Value |
 |:---:|:---:|
-| 📱 **Mobile Number** | `9558611538` |
-| 🔐 **OTP** | Fixed OTP via Firebase |
+| 📱 **Mobile Number** | `*********8` |
+| 🔐 **OTP** | ****** |
 
 ### 🎛️ Admin Capabilities
 
