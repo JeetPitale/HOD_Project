@@ -1,0 +1,20 @@
+/* ===============================
+   App.css (Tailwind-Compatible)
+   Keep minimal – no layout rules
+================================ */
+
+/* Do NOT style #root here */
+/* Do NOT add centering, width, or text-align */
+/* All layout must be handled via Tailwind */
+
+/* Optional: global focus polish */
+:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* Optional: smoother font rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

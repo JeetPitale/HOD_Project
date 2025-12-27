@@ -1,0 +1,17 @@
+# Backend folder .htaccess
+# This prevents the main .htaccess from redirecting PHP files to index.html
+
+# Turn off URL rewriting for this directory
+RewriteEngine Off
+
+# Ensure PHP files are executed
+<FilesMatch \.php$>
+    SetHandler application/x-httpd-php
+</FilesMatch>
+
+# CORS headers for API requests
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+</IfModule>
