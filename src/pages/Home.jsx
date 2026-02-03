@@ -86,7 +86,7 @@ const Home = () => {
               Academic Profile
             </Link>
             <Link
-              to="/blog"
+              to="/about"
               className="px-8 py-4 rounded-xl border border-gray-300 text-gray-700 font-semibold hover:border-blue-600 hover:text-blue-600 transition"
             >
               Research & Insights
@@ -188,8 +188,8 @@ const Home = () => {
                 {status === "loading"
                   ? "Subscribing…"
                   : status === "success"
-                  ? "Subscribed"
-                  : "Subscribe"}
+                    ? "Subscribed"
+                    : "Subscribe"}
               </button>
             </form>
 
