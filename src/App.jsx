@@ -4,6 +4,7 @@ import Layout from './layout/Layout';
 import Home from './pages/Home';
 import About from './pages/About';
 import Blog from './pages/Blog';
+import EBooks from './pages/EBooks';
 import Contact from './pages/Contact';
 
 import { AuthProvider } from './context/AuthContext';
@@ -20,6 +21,7 @@ function App() {
               <Route index element={<Home />} />
               <Route path="about" element={<About />} />
               <Route path="blog" element={<Blog />} />
+              <Route path="ebooks" element={<EBooks />} />
               <Route path="contact" element={<Contact />} />
               <Route path="login" element={<AdminLogin />} />
             </Route>

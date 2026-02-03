@@ -13,11 +13,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 // Production Database Credentials for MilesWeb
-$host = 'localhost';
-$db = 'vishalda1_project_db';    // ✅ From screenshot
-$user = 'vishalda1_website';        // ✅ From screenshot
-$pass = 'Root@12345';     // ← Put password here
+// Detect Environment
+$isLocal = in_array($_SERVER['HTTP_HOST'] ?? '', ['localhost:8000', '127.0.0.1:8000', 'localhost', '127.0.0.1']) || php_sapi_name() === 'cli';
+
+$host = $isLocal ? '127.0.0.1' : 'localhost';
+$db = 'vishalda1_project_db';
 $charset = 'utf8mb4';
+
+if ($isLocal) {
+    // Local Credentials (XAMPP/MAMP/Default)
+    $user = 'root';
+    $pass = '';
+} else {
+    // Production Credentials for MilesWeb
+    $user = 'vishalda1_website';
+    $pass = 'Root@12345';
+}
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 $options = [

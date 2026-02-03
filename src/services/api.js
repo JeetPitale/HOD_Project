@@ -122,3 +122,37 @@ export const deleteComment = async (id) => {
         return { status: 'success' };
     } catch (e) { return { status: 'error' }; }
 };
+
+/* ================= EBOOKS API ================= */
+export const fetchEbooks = async () => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/ebooks_api.php`);
+        return await response.json();
+    } catch (e) {
+        return [];
+    }
+};
+
+export const createEbook = async (payload) => {
+    return await postData('ebooks_api.php', payload);
+};
+
+export const updateEbook = async (payload) => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/ebooks_api.php`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+        });
+        return await response.json();
+    } catch (error) {
+        return { status: 'error', message: error.message };
+    }
+};
+
+export const deleteEbook = async (id) => {
+    try {
+        await fetch(`${API_BASE_URL}/ebooks_api.php?id=${id}`, { method: 'DELETE' });
+        return { status: 'success' };
+    } catch (e) { return { status: 'error' }; }
+};
