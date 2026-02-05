@@ -15,9 +15,25 @@ const Highlights = () => {
         id: null,
         title: "",
         description: "",
-        icon: "🎓",
+        image: "",
         date: new Date().getFullYear().toString()
     });
+
+    // Image Upload Helper
+    const handleImageUpload = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            if (file.size > 2 * 1024 * 1024) {
+                toast.error("File is too large! Max 2MB.");
+                return;
+            }
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setFormData(prev => ({ ...prev, image: reader.result }));
+            };
+            reader.readAsDataURL(file);
+        }
+    };
 
     /* ================= DATA LOADING ================= */
     useEffect(() => {
@@ -41,7 +57,7 @@ const Highlights = () => {
             id: null,
             title: "",
             description: "",
-            icon: "🎓",
+            image: "",
             date: new Date().getFullYear().toString()
         });
         setIsAddModalOpen(true);
@@ -52,7 +68,7 @@ const Highlights = () => {
             id: highlight.id,
             title: highlight.title,
             description: highlight.description,
-            icon: highlight.icon || "🎓",
+            image: highlight.image || "",
             date: highlight.date || ""
         });
         setIsAddModalOpen(true);
@@ -149,7 +165,15 @@ const Highlights = () => {
                                 </div>
                             )}
 
-                            <div className="text-4xl mb-6">{item.icon}</div>
+                            <div className="w-16 h-16 mb-6 rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
+                                {item.image ? (
+                                    <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+                                ) : (
+                                    <div className="w-full h-full flex items-center justify-center text-2xl bg-blue-50 text-blue-700 font-bold">
+                                        {item.title.charAt(0)}
+                                    </div>
+                                )}
+                            </div>
                             <div className="flex justify-between items-start mb-4">
                                 <h3 className="text-2xl font-bold text-gray-900 group-hover:text-blue-700 transition pr-12">
                                     {item.title}
@@ -199,13 +223,12 @@ const Highlights = () => {
 
                                 <div className="grid grid-cols-2 gap-4">
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">Icon (Emoji)</label>
+                                        <label className="block text-sm font-medium text-gray-700 mb-2">Display Image</label>
                                         <input
-                                            type="text"
-                                            value={formData.icon}
-                                            onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
-                                            className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-blue-500 outline-none"
-                                            placeholder="e.g. 🎓, 🔬"
+                                            type="file"
+                                            accept="image/*"
+                                            onChange={handleImageUpload}
+                                            className="w-full text-xs"
                                         />
                                     </div>
                                     <div>
@@ -220,6 +243,17 @@ const Highlights = () => {
                                         />
                                     </div>
                                 </div>
+
+                                {formData.image && (
+                                    <div className="relative w-20 h-20 rounded-lg overflow-hidden border">
+                                        <img src={formData.image} alt="Preview" className="w-full h-full object-cover" />
+                                        <button
+                                            type="button"
+                                            onClick={() => setFormData(prev => ({ ...prev, image: "" }))}
+                                            className="absolute top-0 right-0 p-1 bg-red-600 text-white text-[8px]"
+                                        >✕</button>
+                                    </div>
+                                )}
 
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>

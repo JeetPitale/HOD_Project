@@ -22,11 +22,11 @@ if ($method === 'POST') {
     $input = json_decode(file_get_contents('php://input'), true);
 
     try {
-        $stmt = $pdo->prepare("INSERT INTO highlights (title, description, icon, date) VALUES (?, ?, ?, ?)");
+        $stmt = $pdo->prepare("INSERT INTO highlights (title, description, image, date) VALUES (?, ?, ?, ?)");
         $stmt->execute([
             $input['title'],
             $input['description'],
-            $input['icon'],
+            $input['image'],
             $input['date']
         ]);
         echo json_encode(['status' => 'success', 'id' => $pdo->lastInsertId()]);
@@ -48,11 +48,11 @@ if ($method === 'PUT') {
     }
 
     try {
-        $stmt = $pdo->prepare("UPDATE highlights SET title=?, description=?, icon=?, date=? WHERE id=?");
+        $stmt = $pdo->prepare("UPDATE highlights SET title=?, description=?, image=?, date=? WHERE id=?");
         $result = $stmt->execute([
             $input['title'],
             $input['description'],
-            $input['icon'],
+            $input['image'],
             $input['date'],
             $input['id']
         ]);
