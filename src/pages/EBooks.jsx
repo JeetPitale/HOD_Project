@@ -359,7 +359,7 @@ const EBooks = () => {
                                         type="file"
                                         accept="image/*"
                                         onChange={handleImageUpload}
-                                        className="w-full"
+                                        className="w-full px-3 py-2 rounded-lg border text-xs outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                     {formData.image && (
                                         <img src={formData.image} alt="Preview" className="h-32 object-cover mt-2 rounded border" />
