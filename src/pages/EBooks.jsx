@@ -19,7 +19,7 @@ const EBooks = () => {
         fullDescription: "",
         image: "",
         link: "",
-        tag: "Computer Science"
+        tag: ""
     });
 
     /* ================= DATA LOADING ================= */
@@ -69,7 +69,7 @@ const EBooks = () => {
             fullDescription: "",
             image: "",
             link: "",
-            tag: "Computer Science"
+            tag: ""
         });
         setIsAddModalOpen(true);
     };
@@ -337,7 +337,7 @@ const EBooks = () => {
                                             value={formData.tag}
                                             onChange={(e) => setFormData({ ...formData, tag: e.target.value })}
                                             className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-blue-500 outline-none"
-                                            placeholder="e.g. AI, Science"
+                                            placeholder="Computer Science"
                                         />
                                     </div>
                                     <div>

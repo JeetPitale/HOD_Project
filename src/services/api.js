@@ -156,3 +156,38 @@ export const deleteEbook = async (id) => {
         return { status: 'success' };
     } catch (e) { return { status: 'error' }; }
 };
+
+/* ================= HIGHLIGHTS API ================= */
+export const fetchHighlights = async () => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/highlights_api.php`);
+        return await response.json();
+    } catch (e) {
+        return [];
+    }
+};
+
+export const createHighlight = async (payload) => {
+    return await postData('highlights_api.php', payload);
+};
+
+export const updateHighlight = async (payload) => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/highlights_api.php`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+        });
+        return await response.json();
+    } catch (error) {
+        return { status: 'error', message: error.message };
+    }
+};
+
+export const deleteHighlight = async (id) => {
+    try {
+        await fetch(`${API_BASE_URL}/highlights_api.php?id=${id}`, { method: 'DELETE' });
+        return { status: 'success' };
+    } catch (e) { return { status: 'error' }; }
+};
+

@@ -10,6 +10,7 @@ import Contact from './pages/Contact';
 import { AuthProvider } from './context/AuthContext';
 import { ToastProvider } from './context/ToastContext';
 import AdminLogin from './pages/AdminLogin';
+import Highlights from './pages/Highlights';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
               <Route path="about" element={<About />} />
               <Route path="blog" element={<Blog />} />
               <Route path="ebooks" element={<EBooks />} />
+              <Route path="highlights" element={<Highlights />} />
               <Route path="contact" element={<Contact />} />
               <Route path="login" element={<AdminLogin />} />
             </Route>
