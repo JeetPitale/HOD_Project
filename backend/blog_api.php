@@ -3,6 +3,7 @@
 require 'db_connect.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
+header('Content-Type: application/json');
 
 // GET: Fetch All Posts
 if ($method === 'GET') {

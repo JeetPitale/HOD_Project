@@ -3,6 +3,7 @@
 require 'db_connect.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
+header('Content-Type: application/json');
 
 // GET: Fetch All Books
 if ($method === 'GET') {
@@ -42,7 +43,7 @@ if ($method === 'POST') {
 // PUT: Update Existing Book
 if ($method === 'PUT') {
     $input = json_decode(file_get_contents('php://input'), true);
-    
+
     if (!isset($input['id'])) {
         http_response_code(400);
         echo json_encode(['status' => 'error', 'message' => 'Missing Book ID']);
